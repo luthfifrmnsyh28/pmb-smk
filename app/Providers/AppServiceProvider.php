@@ -16,17 +16,18 @@ class AppServiceProvider extends ServiceProvider
         //
     }
 
-    public function boot(): void
-    {
-        Carbon::setLocale('id');
+   public function boot(): void
+{
+    Carbon::setLocale('id');
 
-        Gate::before(function ($user, $ability) {
-            return $user->hasRole($ability) ? true : null;
-        });
+    Gate::before(function ($user, $ability) {
+        return $user->hasRole($ability) ? true : null;
+    });
 
-        // 🔥 FIX DI SINI
-        if (Schema::hasTable('settings')) {
-            View::share('setting', Setting::first());
-        }
+    if (Schema::hasTable('settings')) {
+        View::share('setting', Setting::first());
+    } else {
+        View::share('setting', null);
     }
+}
 }
