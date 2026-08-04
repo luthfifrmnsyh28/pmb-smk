@@ -20,6 +20,11 @@ COPY . .
 
 RUN composer install --no-dev --optimize-autoloader
 
+# 🔥 Tambahan penting biar gak error config
+RUN php artisan config:clear || true
+RUN php artisan cache:clear || true
+
 EXPOSE 8080
 
-CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT
+# ✅ FIX: JANGAN MIGRATE DI SINI
+CMD php artisan serve --host=0.0.0.0 --port=$PORT
