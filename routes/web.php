@@ -2,6 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Artisan;
+
+Route::get('/run-migrate', function () {
+    Artisan::call('migrate --force');
+    return 'MIGRATION DONE';
+});
+
 /*
 |--------------------------------------------------------------------------
 | Controllers
