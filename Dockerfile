@@ -27,4 +27,4 @@ RUN php artisan cache:clear || true
 EXPOSE 8080
 
 # ✅ FIX: JANGAN MIGRATE DI SINI
-CMD php artisan serve --host=0.0.0.0 --port=$PORT
+CMD php -S 0.0.0.0:${PORT} -t public
