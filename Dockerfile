@@ -26,4 +26,4 @@ EXPOSE 8080
 ENV APP_ENV=production
 ENV APP_DEBUG=true
 
-CMD php -d variables_order=EGPCS -S 0.0.0.0:8080 -t public
+CMD php artisan migrate --force --no-interaction; php -S 0.0.0.0:8080 -t public
