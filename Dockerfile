@@ -26,4 +26,4 @@ EXPOSE 8080
 ENV APP_ENV=production
 ENV APP_DEBUG=true
 
-CMD ["sh", "-c", "php artisan migrate --force --no-interaction || true; php -S 0.0.0.0:8080 -t public"]
+CMD ["sh", "-c", "php artisan migrate --force --no-interaction || true; php -S 0.0.0.0:${PORT} -t public"]
