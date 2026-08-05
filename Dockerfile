@@ -21,4 +21,4 @@ RUN php artisan config:clear || true
 RUN php artisan cache:clear || true
 RUN php artisan view:clear || true
 
-CMD ["sh", "-c", "php -S 0.0.0.0:${PORT:-8080} -t public"]
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8080"]
