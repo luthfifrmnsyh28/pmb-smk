@@ -372,45 +372,39 @@ Lihat Jurusan
        <div class="visi-wrapper">
 
     <!-- VISI -->
-    <div class="card shadow-lg border-0 rounded-4 mb-4 visi-card">
+<div class="card shadow-lg border-0 rounded-4 mb-4 visi-card">
+    <div class="card-body text-center py-5 px-4">
 
-        <div class="card-body text-center py-5 px-4">
-
-            <div class="visi-icon mb-4">
-                <i class="fas fa-eye"></i>
-            </div>
-
-            <h3 class="text-primary fw-bold mb-4">
-                VISI
-            </h3>
-
-            <p class="visi-text">
-                {{ $visiMisi->visi }}
-            </p>
-
+        <div class="visi-icon mb-4">
+            <i class="fas fa-eye"></i>
         </div>
+
+        <h3 class="text-primary fw-bold mb-4">
+            VISI
+        </h3>
+
+        <p class="visi-text">
+            {{ optional($visiMisi)->visi ?? '-' }}
+        </p>
 
     </div>
+</div>
 
-    <!-- MISI -->
-    <div class="card shadow-lg border-0 rounded-4">
-
-        <div class="card-header bg-primary text-white py-3">
-            <h4 class="mb-0">
-                <i class="fas fa-bullseye me-2"></i>
-                MISI SEKOLAH
-            </h4>
-        </div>
-
-        <div class="card-body p-5">
-
-            <div class="misi-text">
-                {!! nl2br(e($visiMisi->misi)) !!}
-            </div>
-
-        </div>
-
+<!-- MISI -->
+<div class="card shadow-lg border-0 rounded-4">
+    <div class="card-header bg-primary text-white py-3">
+        <h4 class="mb-0">
+            <i class="fas fa-bullseye me-2"></i>
+            MISI SEKOLAH
+        </h4>
     </div>
+
+    <div class="card-body p-5">
+        <div class="misi-text">
+            {!! nl2br(e(optional($visiMisi)->misi ?? '-')) !!}
+        </div>
+    </div>
+</div>
 
 </div>
         </div>

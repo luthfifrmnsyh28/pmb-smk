@@ -2,75 +2,53 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Slider;
+use App\Models\VisiMisi;
+use App\Models\Kepsek;
 use App\Models\Setting;
+use App\Models\Guru;
 use App\Models\Jurusan;
 use App\Models\Gelombang;
-use App\Models\Slider;
-use App\Models\Pendaftar;
-use App\Models\VisiMisi;
-use App\Models\Guru;
-use App\Models\KepalaSekolah;
 use App\Models\Galeri;
-use App\Models\KategoriGaleri;
-use App\Models\Berita;
-
+use App\Models\Pendaftar;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $setting = Setting::first();
-
-        $jurusans = Jurusan::where('status', 1)->get();
-
-        $gelombangs = Gelombang::orderBy('tanggal_mulai')->get();
-
+        // SLIDER
         $sliders = Slider::where('aktif', 1)
             ->orderBy('urutan')
             ->get();
 
+        // STATISTIK
         $totalPendaftar = Pendaftar::count();
-
-        $totalJurusan = Jurusan::where('status', 1)->count();
-
+        $totalJurusan   = Jurusan::count();
         $totalGelombang = Gelombang::where('status', 1)->count();
 
+        // DATA UTAMA
         $visiMisi = VisiMisi::first();
+        $kepsek   = Kepsek::first();
+        $setting  = Setting::first();
 
-        $gurus = Guru::where('status',1)
-            ->orderBy('urutan')
-            ->get();
-
-        $kepsek = KepalaSekolah::first();
-
-        $kategoriGaleri = KategoriGaleri::where('status',1)
-    ->orderBy('urutan')
-    ->get();
-
-$galeris = Galeri::where('status',1)
-    ->with('kategori')
-    ->orderBy('urutan')
-    ->get();
-
-    $beritas = Berita::where('status',1)
-    ->latest()
-    ->take(3)
-    ->get();
+        // LIST DATA
+        $gurus      = Guru::latest()->get();
+        $jurusans   = Jurusan::latest()->get();
+        $gelombangs = Gelombang::latest()->get();
+        $galeris    = Galeri::with('kategori')->latest()->get();
 
         return view('home.index', compact(
-            'setting',
-            'jurusans',
-            'gelombangs',
             'sliders',
             'totalPendaftar',
             'totalJurusan',
             'totalGelombang',
             'visiMisi',
-            'gurus',
             'kepsek',
-            'kategoriGaleri',
-            'galeris',
-            'beritas'
+            'setting',
+            'gurus',
+            'jurusans',
+            'gelombangs',
+            'galeris'
         ));
     }
 }
