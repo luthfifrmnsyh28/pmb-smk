@@ -267,7 +267,7 @@ TENTANG SEKOLAH
 
 <h2 class="fw-bold mb-4">
 
-{{ $setting->nama_sekolah }}
+{{ optional($setting)->nama_sekolah }}
 
 </h2>
 
