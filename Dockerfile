@@ -26,4 +26,4 @@ RUN php artisan cache:clear || true
 RUN php artisan view:clear || true
 
 # 🔥 INI KUNCI (JANGAN DIUBAH)
-CMD php -S 0.0.0.0:$PORT -t public
+CMD ["sh", "-c", "php -S 0.0.0.0:$PORT -t public"]
