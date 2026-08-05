@@ -23,4 +23,7 @@ RUN chmod -R 775 storage bootstrap/cache
 
 EXPOSE 8080
 
-CMD php artisan migrate --force --no-interaction || true && php -S 0.0.0.0:8080 -t public
+ENV APP_ENV=production
+ENV APP_DEBUG=true
+
+CMD php -d variables_order=EGPCS -S 0.0.0.0:8080 -t public
